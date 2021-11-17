@@ -1,0 +1,41 @@
+    <table>
+    <tr>
+      <th></th>
+      <th>Brand</th>
+      <th>Product name</th>
+      <th>Discount</th>
+      <th>Price before discount</th>
+      <th>Price</th>
+      <th>Sold</th>
+      <th>Stock</th>
+      <th>View</th>
+      <th>Shop location</th>
+    </tr>
+    <%= for item <- @products do %>
+      <tr>
+        <td>
+          <img src={"#{item.image}"}/>
+        </td>
+        <%= if (item.brand != "None") do %>
+          <td><%= item.brand %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+
+        <td><%= item.name %></td>
+        <td><%= item.discount %></td>
+
+        <%= if (item.price_before_discount != 0) do %>
+          <td style="text-decoration-line: line-through;"><%= numberDelimit(item.price_before_discount) %> <%= item.currency%></td>
+        <% else %>
+          <td></td>
+        <% end %>      
+
+        <td><%= numberDelimit(item.price) %> <%= item.currency%></td>
+        <td><%= item.sold %></td>
+        <td><%= item.stock %></td>
+        <td><%= numberDelimit(item.view_count) %></td>
+        <td><%= item.shop_location %></td>
+      </tr>
+    <% end %>
+  </table>
